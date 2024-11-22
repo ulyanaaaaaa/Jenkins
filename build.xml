@@ -1,0 +1,29 @@
+<project name="Laba9" default="dist" basedir=".">
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/Laba9.jar" basedir="${build.dir}"/>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${dist.dir}/Laba9.jar" fork="true"/>
+    </target>
+
+    <target name="dist" depends="jar">
+        <echo message="Distribution created at ${dist.dir}/Laba9.jar"/>
+    </target>
+</project>
